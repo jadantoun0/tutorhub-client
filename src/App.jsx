@@ -1,7 +1,6 @@
 import  {BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import VerifyEmailPage from './pages/VerifyEmailPage';
-import Navbar from './components/navbar/Navbar';
 import RegisterPage from './pages/RegisterPage';
 import SignInPage from './pages/SigninPage';
 import Footer from './components/footer/Footer';
@@ -23,6 +22,7 @@ import RoomPage from './pages/RoomPage';
 import { useEffect} from 'react';
 import { useGetUserQuery } from './redux/services/authSlice';
 import { setUser } from './redux/store/userSlice';
+import Header from './components/navbar/Header';
 
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
         <BrowserRouter>
           {/* we check based on the page route whether to show header or not (if log in or register we dont show)*/}
           <CheckNavbar>
-            <Navbar />
+            <Header />
           </CheckNavbar>
 
           <Routes>

@@ -1,10 +1,19 @@
 import CircularProgress from '@mui/material/CircularProgress';
-import React from 'react';
+import React, { useState } from 'react';
 
-const WideButton = ({text, isLoading, onClick, color}) => {
+const WideButton = ({text, onClick, color}) => {
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleClick = async (e) => {
+    setIsLoading(true);
+    await onClick(e);
+    setIsLoading(false);
+  }
+
   return (
     <button 
-        onClick={onClick}
+        onClick={handleClick}
         className={`w-full text-sm py-2 rounded-lg mt-5 hover:opacity-90 ${color === 'white' ? 'bg-white text-black' : "bg-violet text-white"}`}
     >
         <div className='flex justify-center items-center gap-x-2'>

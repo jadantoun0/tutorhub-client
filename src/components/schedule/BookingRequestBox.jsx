@@ -1,28 +1,27 @@
 import React from 'react'
-import CustomButton from '../common/CustomButton'
 import { formatDateWithDayName } from '../../utils/global'
 import { useAcceptAppointmentMutation, useDeleteAppointmentMutation } from '../../redux/services/appointmentsSlice'
-
+import CustomButton from '../common/buttons/CustomButton';
 
 const BookingRequestBox = ({appointment}) => {
 
-  const isTutor = appointment.student?.email ? true: false;
+  const isTutor = appointment.student?.email ? true : false;
   const viewedUser = isTutor? appointment.student : appointment.tutor
-
+  
   const [acceptAppointment] = useAcceptAppointmentMutation();
   const [deleteAppointment] = useDeleteAppointmentMutation();
 
   const acceptRequest = async () => {
     try {
-      acceptAppointment(appointment._id);
+      await acceptAppointment(appointment._id);
     } catch(err) {
       console.log(err);
-    }
+    } 
   }
 
   const declineRequest = async () => {
     try {
-      deleteAppointment(appointment._id);
+      await deleteAppointment(appointment._id);
     } catch(err) {
       console.log(err);
     }
@@ -51,7 +50,7 @@ const BookingRequestBox = ({appointment}) => {
               Requested a meeting on <b>{formatDateWithDayName(appointment.date)} </b> 
             </p>
             <div className='mt-2 flex gap-x-5'>
-                <CustomButton text='Decline' onClick={declineRequest} style={{backgroundColor: "#D9D9D9", color: "black"}} />
+                <CustomButton text='Decline' color="gray" onClick={declineRequest} />
                 <CustomButton text='Accept' onClick={acceptRequest} />
             </div>
         </div>

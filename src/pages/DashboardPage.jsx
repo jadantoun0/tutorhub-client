@@ -106,7 +106,7 @@ const DashboardPage = () => {
                 {
                     appointmentRequests.length === 0 ? 
                       <p>You have no incoming appointment requests</p> :
-                      <div className='mt-4'>
+                      <div className='mt-4 flex flex-col gap-y-4'>
                         {
                           appointmentRequests.map((appointment => 
                             <BookingRequestBox appointment={appointment} />))

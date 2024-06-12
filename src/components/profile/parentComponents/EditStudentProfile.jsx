@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ProfileInputBox from '../childComponents/ProfileInputBox';
 import ProfilePictureInputBox from '../childComponents/ProfilePictureInputBox';
-import CustomButton from '../../common/CustomButton';
+import CustomButton from '../../common/buttons/CustomButton';
 import studentService from '../../../services/studentService';
 import { EducationalLevelOptions } from '../../../utils/userDataEnumUtils';
 import { countriesOptions, languagesOptions } from '../../../utils/comboBoxOptions';

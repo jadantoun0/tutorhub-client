@@ -6,8 +6,6 @@ import { selectUser } from '../../redux/store/userSlice';
 const CourseCard = ({course}) => {
 
   const isTutor = useSelector(selectUser)?.role?.toLowerCase() === 'tutor';
-
-  console.log('course:', course.tutor.profilePic);
   
   return (
     <Link to={`/courses/${course._id}`} className='w-72 h-72 sm:min-w-80 sm:max-w-80 sm:h-80 bg-gray cursor-pointer flex flex-col rounded-md'>

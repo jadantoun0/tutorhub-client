@@ -4,7 +4,7 @@ const EnrolledStudentBox = ({student}) => {
   return (
     <article   
         className='flex items-center px-5 gap-x-5 h-16'
-        style={{ borderBottom: "1px solid #ccc"}}
+        style={{ borderBottom: "1px solid #ccc"}} 
     >
         <img 
             src={student.profilePic ? student.profilePic : '/images/pp.png'} 

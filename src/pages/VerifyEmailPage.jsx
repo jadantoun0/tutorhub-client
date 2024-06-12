@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import authService from '../services/authService';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../redux/store/userSlice';
-import WideButton from '../components/common/WideButton';
+import WideButton from '../components/common/buttons/WideButton';
 
 const VerifyEmail = () => {
 
@@ -14,9 +14,6 @@ const VerifyEmail = () => {
   const [num2, setNum2] = useState("")
   const [num3, setNum3] = useState("")
   const [num4, setNum4] = useState("");
-
-  const [vLoading, setVLoading] = useState(false);
-  const [rLoading, setRLoading] = useState(false);
 
   const [isDisabled, setIsDisabled] = useState(false);
   const [errorAlert, setErrorAlert] = useState("");
@@ -74,7 +71,6 @@ const VerifyEmail = () => {
     }
 
     try {
-      setVLoading(true);
       const user = await authService.verifyUser(email, otpString);
       localStorage.removeItem('email')
       dispatch(setUser(user));
@@ -86,9 +82,7 @@ const VerifyEmail = () => {
     } catch(err) {
       console.log(err);
       setErrMsg(err.response?.data?.message);
-    } finally {
-      setVLoading(false);
-    }
+    } 
   }
 
 
@@ -99,16 +93,13 @@ const VerifyEmail = () => {
       // disabling btn for next 60s
       setIsDisabled(true);
       try {
-        setRLoading(true);
         await authService.resendOTP(email)
         showSuccessAlert();
 
       } catch(err){
         console.log(err);
         showErrorAlert();
-      } finally {
-        setRLoading(false);
-      }
+      } 
       // enabling button after 2mins
       setTimeout(() => {
         setIsDisabled(false);
@@ -206,9 +197,8 @@ const VerifyEmail = () => {
                 </div>
            
                 {errMsg && <p className='text-red-500 mt-3 text-center text-sm'>{errMsg}</p>}
-                <WideButton text="Verify" isLoading={vLoading}  onClick={(e)=> verifyOTP(e)} />
-                <WideButton text="Resend Code" isLoading={rLoading} color="white" onClick={(e) => resendOTP(e)}/>
-              
+                <WideButton text="Verify" onClick={(e)=> verifyOTP(e)} />
+                <WideButton text="Resend Code" color="white" onClick={(e) => resendOTP(e)}/>
             </form>
         </div>
     </div>

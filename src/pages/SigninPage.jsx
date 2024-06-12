@@ -3,32 +3,29 @@ import { useNavigate } from 'react-router';
 import authService from '../services/authService';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../redux/store/userSlice';
-import WideButton from '../components/common/WideButton';
+import WideButton from '../components/common/buttons/WideButton';
 import { Link } from 'react-router-dom';
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const signInUser = async (e) => {
     e.preventDefault();
     try {
-        setIsLoading(true);
-        const user = await authService.authenticate({email, password})
-        console.log('user after login request: ', user);
-        // update global state isLoggedIn
-        dispatch(setUser(user));
-        navigate("/dashboard");
+      console.log('sending request');
+      const user = await authService.authenticate({email, password})
+      console.log('user after login request: ', user);
+      // update global state isLoggedIn
+      dispatch(setUser(user));
+      navigate("/dashboard");
     } catch(err) {
         console.log(err);
         setErrMessage(err.response?.data?.message)
-    } finally {
-      setIsLoading(false);
-    }
+    } 
 }
   
 return (
@@ -74,7 +71,10 @@ return (
 
               {errMessage && <p className='text-red-500 text-center text-sm'>{errMessage}</p>}
 
-              <WideButton text="Sign in" isLoading={isLoading} onClick={(e) => signInUser(e)}/>
+              <WideButton text="Sign in" onClick={async (e) => {
+                  e.preventDefault();
+                  await signInUser(e)
+              }}/>
 
               <p className="mt-3 text-center text-sm text-gray-500">
               Don't have an account?{' '}

@@ -7,6 +7,7 @@ import CustomComboBox from '../../common/CustomComboBox'
 import dayjs from 'dayjs';
 import appointmentService from '../../../services/appointmentService';
 import CloseIcon from '@mui/icons-material/Close';
+import CustomButton from '../../common/buttons/CustomButton';
 
 const BookSessionBox = ({setSuccessAlert, tutorId, handleClose}) => {
 
@@ -14,7 +15,7 @@ const BookSessionBox = ({setSuccessAlert, tutorId, handleClose}) => {
     const [duration, setDuration] = useState(60);
     const [course, setCourse] = useState("");
     const [appointmentDate, setAppointmentDate] = useState(dayjs());
-    const [errMsg, setErrMsg] = useState("")
+    const [errMsg, setErrMsg] = useState("");
 
     const typeOptions = [
         {value: 'in-person', label: 'In-Person'},
@@ -41,7 +42,7 @@ const BookSessionBox = ({setSuccessAlert, tutorId, handleClose}) => {
             handleClose();
         } catch(err) {
             console.log(err);
-        }
+        } 
     }
 
     const showSuccessAlert = () => {
@@ -121,14 +122,10 @@ const BookSessionBox = ({setSuccessAlert, tutorId, handleClose}) => {
             </div>
 
             <div className='flex justify-end mt-3'>
-                <button 
-                    onClick={sendMeetingRequest}
-                    className='bg-violet text-sm text-white px-3 py-1.5 rounded-md hover:bg-indigo-900'>
-                    Request Meeting
-                </button>
+                <CustomButton text="Request meeting" onClick={sendMeetingRequest} />
             </div>
         </div>
-        {errMsg && <p className='mt-2 text-red-500'>{errMsg}</p>}
+        {errMsg && <p className='mt-2 text-sm text-red-500'>{errMsg}</p>}
 
         </div>
   </div>

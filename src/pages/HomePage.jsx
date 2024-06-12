@@ -2,7 +2,7 @@ import React from 'react'
 import Subject from '../components/home/Subject'
 import FeaturesBox from '../components/home/FeaturesBox'
 import IntroductoryImage from '../components/home/IntroductoryImage'
-import RoundedButton from '../components/common/RoundedButton'
+import RoundedButton from '../components/common/buttons/RoundedButton'
 import { useNavigate } from 'react-router-dom'
 
 // This is the home page for visitors introducing the website for them, so it doesn't contain any server-side data

@@ -3,7 +3,7 @@ import ProfileInputBox from '../childComponents/ProfileInputBox';
 import ProfileEducationInputBox from '../childComponents/ProfileEducationInputBox';
 import ProfilePictureInputBox from '../childComponents/ProfilePictureInputBox';
 import tutorService from '../../../services/tutorService'
-import CustomButton from '../../common/CustomButton';
+import CustomButton from '../../common/buttons/CustomButton';
 import { SessionTypeOptions } from '../../../utils/userDataEnumUtils';
 import { countriesOptions, languagesOptions, subjectOptions } from '../../../utils/comboBoxOptions';
 import { useDispatch } from 'react-redux';

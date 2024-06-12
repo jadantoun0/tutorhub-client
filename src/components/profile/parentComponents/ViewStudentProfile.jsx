@@ -1,6 +1,6 @@
 import React from 'react'
 import ProfileDataBox from '../childComponents/ProfileDataBox'
-import CustomButton from '../../common/CustomButton'
+import CustomButton from '../../common/buttons/CustomButton'
 import { capitalizeFirstLetter, formatDate, getCountryLabelByValue } from '../../../utils/global'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../../redux/store/userSlice'

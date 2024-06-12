@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import LargeButton from '../common/LargeButton';
+import LargeButton from '../common/buttons/LargeButton';
 
 const IntroductoryImage = () => {
   const navigate = useNavigate();

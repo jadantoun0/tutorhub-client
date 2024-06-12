@@ -44,7 +44,7 @@ const CoursesPage = () => {
           {
             courses.length === 0 ?
               <p>You're not enrolled in any course yet.</p> :
-              courses.map(course => <CourseCard course={course} />)
+              courses.map((course, key) => <CourseCard key={key} course={course} />)
           }
         </div>
 

@@ -3,13 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAddFileToWeekMutation, useDeleteCouseMutation, useGetCourseByIdQuery, useRemoveStudentFromCourseMutation } from '../redux/services/courseSlice';
 import CustomLoadingSpinner from '../components/common/CustomLoadingSpinner';
 import WeekCard from '../components/courses/WeekCard';
-import MyButton from '../components/common/MyButton';
 import { uploadFile } from '../services/fileService';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../redux/store/userSlice';
 import { Modal } from '@mui/material';
 import AddStudentModal from '../components/courses/AddStudentModal';
 import EnrolledStudentBox from '../components/courses/EnrolledStudentBox';
+import CustomButton from '../components/common/buttons/CustomButton';
 
 const CourseDetails = () => {
   const { courseId } = useParams();
@@ -23,7 +23,6 @@ const CourseDetails = () => {
   const navigate = useNavigate();
   
   const loggedUser = useSelector(selectUser);
-
 
   // states to handle modal
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -93,10 +92,10 @@ const CourseDetails = () => {
               { isTutor && (
                 <>
                   <div className='hidden lg:block'>
-                    <MyButton text="Add Student" color="gray" onClick={handleAddStudent}/>
+                    <CustomButton text="Add Student" color="gray" onClick={handleAddStudent}/>
                   </div>
                   <div>
-                    <MyButton text="Upload File" onClick={handleUpload}/>
+                    <CustomButton text="Upload File" onClick={handleUpload}/>
                   </div>
                 </>
               )}
@@ -157,8 +156,8 @@ const CourseDetails = () => {
 
           <div className='flex justify-center mt-5'>
             {isTutor ?
-              <MyButton onClick={handleDeleteCourse} style={{backgroundColor: "red"}} text='Delete Course'/> :
-              <MyButton onClick={handleLeaveCourse} style={{backgroundColor: "red"}} text='Leave Course'/> 
+              <CustomButton onClick={handleDeleteCourse} color="red" text='Delete Course'/> :
+              <CustomButton onClick={handleLeaveCourse} color="red" text='Leave Course'/> 
             }
           </div>
 

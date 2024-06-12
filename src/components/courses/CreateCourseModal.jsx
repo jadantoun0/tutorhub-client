@@ -5,6 +5,7 @@ import CustomInput from '../common/CustomInput';
 import CustomComboBox from '../common/CustomComboBox';
 import { uploadFile } from '../../services/fileService';
 import { useCreateCourseMutation } from '../../redux/services/courseSlice';
+import CustomButton from '../common/buttons/CustomButton';
 
 const CreateCourseModal = ({handleClose}) => {
 
@@ -80,11 +81,10 @@ const CreateCourseModal = ({handleClose}) => {
                         <img src="images/default course cover.jpg" alt="no profile pic" className='w-20 h-20 rounded-full object-cover'/> 
                     }
                 </div>
-                <button 
-                    onClick={changeCoverPhoto}
-                    className='bg-white mx-auto text-sm text-black px-3 py-1.5 rounded-md'>
-                    Change cover
-                </button>
+
+                <div className='flex justify-center'>
+                    <CustomButton text="Change cover" color="white" onClick={changeCoverPhoto}/>
+                </div>
                 {/* INVISIVLE INPUT TO OPEN FILE INPUT DIALOG */}
                 <input
                     type="file"
@@ -112,13 +112,8 @@ const CreateCourseModal = ({handleClose}) => {
                     />
                 </div>
 
-
                 <div className='flex justify-end mt-3'>
-                    <button 
-                        onClick={handleCreateCourse}
-                        className='bg-violet text-sm text-white px-3 py-1.5 rounded-md hover:bg-indigo-900'>
-                        Create Course
-                    </button>
+                    <CustomButton text="Create Course" onClick={handleCreateCourse}/>
                 </div>
             </div>
             {errMsg && <p className='mt-2 text-red-500'>{errMsg}</p>}

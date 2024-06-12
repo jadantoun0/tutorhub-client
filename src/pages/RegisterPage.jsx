@@ -3,7 +3,7 @@ import { FormControl } from '@mui/base';
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import { useNavigate } from 'react-router';
 import authService from '../services/authService';
-import WideButton from '../components/common/WideButton';
+import WideButton from '../components/common/buttons/WideButton';
 import { Link } from 'react-router-dom';
 
 const RegisterPage = () => {
@@ -13,7 +13,6 @@ const RegisterPage = () => {
   const [confirmPass, setConfirmPass] = useState("");
   const [role, setRole] = useState('student');
   const [errMessage, setErrMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -31,7 +30,6 @@ const RegisterPage = () => {
     }
 
     try {
-        setIsLoading(true);
         const user = await authService.register({email, password, role});
         setErrMessage("");
         localStorage.setItem("email", user.email);
@@ -39,9 +37,7 @@ const RegisterPage = () => {
     } catch(err) {
         console.log(err);
         setErrMessage(err.response?.data?.message);
-    } finally {
-        setIsLoading(false);
-    }
+    } 
   }
 
   return (
@@ -123,7 +119,7 @@ const RegisterPage = () => {
 
                 {errMessage && <p className='text-red-500 text-center text-sm'>{errMessage}</p>}
 
-                <WideButton text="Create" isLoading={isLoading} onClick={(e) => registerUser(e)}/>
+                <WideButton text="Create" onClick={(e) => registerUser(e)}/>
 
                 <p className="mt-3 text-center text-sm text-gray-500">
                     Already have an account?{' '}

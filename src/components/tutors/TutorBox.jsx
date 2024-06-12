@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import CustomButton from '../common/CustomButton';
+import CustomButton from '../common/buttons/CustomButton';
 import { calculateRating, capitalizeFirstLetter } from '../../utils/global';
 import { Rating } from '@mui/material';
 

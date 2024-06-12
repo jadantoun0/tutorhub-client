@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import socket from '../utils/socket';
 import { useNavigate } from 'react-router-dom';
-import MyButton from '../components/common/MyButton';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../redux/store/userSlice';
+import CustomButton from '../components/common/buttons/CustomButton';
 
 const StartMeetingPage = () => {
   const roomRef = useRef();
@@ -53,7 +53,7 @@ const StartMeetingPage = () => {
             class="block w-56 rounded-md py-1.5 px-2"
             style={{border: "2px solid #592ACD"}}
           />
-          <MyButton text="Start Meeting" onClick={() => clickJoin()}/>
+          <CustomButton text="Start Meeting" onClick={() => clickJoin()}/>
         </div>
         {err && <p>{errMsg}</p>}
     </div>

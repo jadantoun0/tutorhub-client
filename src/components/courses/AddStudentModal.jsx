@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import AddStudentBox from './AddStudentBox';
-import MyButton from '../common/MyButton';
 import { useGetAllStudentsQuery } from '../../redux/services/studentsSlice';
 import CustomLoadingSpinner from '../common/CustomLoadingSpinner';
 import { useAddStudentToCourseMutation } from '../../redux/services/courseSlice';
+import CustomButton from '../common/buttons/CustomButton';
 
 const AddStudentModal = ({handleClose, courseId, enrolledStudents}) => {
     const {data, isLoading, error} = useGetAllStudentsQuery();
@@ -29,6 +29,18 @@ const AddStudentModal = ({handleClose, courseId, enrolledStudents}) => {
         setSelectedStudents(updatedStudents);
     };
 
+    // function to add students to a course
+    const addStudents = async () => {
+  
+        const addStudentPromises = selectedStudents.map(student => 
+            addStudentToCourse({ courseId, studentId: student._id }));
+
+        await Promise.all(addStudentPromises);
+        // clearing selected students array after adding them all
+        setSelectedStudents([]);
+        handleClose();
+    }
+
     if (error) {
         return <p>An unexpected error occured</p>
     }
@@ -36,15 +48,6 @@ const AddStudentModal = ({handleClose, courseId, enrolledStudents}) => {
     if (isLoading) {
         return <CustomLoadingSpinner />
     }
-
-    const addStudents = async () => {
-        selectedStudents.forEach(async (student) => 
-            await addStudentToCourse({courseId, studentId: student._id}));
-        // clearing selected students array after adding them all
-        setSelectedStudents([]);
-        handleClose();
-    }
-
 
   return (
     <div 
@@ -61,7 +64,7 @@ const AddStudentModal = ({handleClose, courseId, enrolledStudents}) => {
         </div>
         <div className='flex justify-between mx-5 mt-3'>
             <p>{selectedStudents.length} selected</p>
-            <MyButton text="Add Students" onClick={addStudents}/>
+            <CustomButton text="Add Students" onClick={addStudents}/>
         </div>
     </div>
 

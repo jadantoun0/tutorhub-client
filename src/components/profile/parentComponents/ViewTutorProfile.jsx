@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ProfileDataBox from '../childComponents/ProfileDataBox'
-import CustomButton from '../../common/CustomButton'
+import CustomButton from '../../common/buttons/CustomButton'
 import { calculateRating, capitalizeFirstLetter, getCountryLabelByValue } from '../../../utils/global'
 import { Alert, Modal } from '@mui/material'
 import BookSessionBox from '../childComponents/BookSessionBox'
@@ -14,7 +14,7 @@ const ViewTutorProfile = ({isOwnProfile, setEditMode, user}) => {
   const [successAlert, setSuccessAlert] = useState("");
   const navigate = useNavigate();
   const loggedUser = useSelector(selectUser);
-  const isTutor = loggedUser?.type?.toLowerCase() === "tutor";
+  const isTutor = loggedUser?.role?.toLowerCase() === "tutor";
 
   const formData = [
     {title: "Bio" , content: user.bio},
@@ -43,7 +43,6 @@ const ViewTutorProfile = ({isOwnProfile, setEditMode, user}) => {
   const openBookSession = () => loggedUser ? setIsModalOpen(true) : navigate('/signin')
   const closeBookSession = () => setIsModalOpen(false);
 
-  // when user presses to message a tutor, we direct him to sign in if he is not
   
   return (
     <div>
@@ -73,7 +72,7 @@ const ViewTutorProfile = ({isOwnProfile, setEditMode, user}) => {
                   { 
                   !isOwnProfile && !isTutor &&
                    <div className='flex gap-x-2'> 
-                    <CustomButton text='Book Session' color='secondary' onClick={openBookSession}/>
+                    <CustomButton text='Book Session' color='white' onClick={openBookSession}/>
                     <CustomButton text='Message' onClick={goToMessage}/>
                    </div>
                   }
